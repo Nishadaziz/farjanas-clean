@@ -6,7 +6,7 @@ function Navbar() {
       <img src={logo} alt="Farjanas Attire" className="h-14 w-auto" />
 
       <a
-        href="https://wa.me/8801793650138"
+        href="https://wa.me/8801912783281"
         target="_blank"
         rel="noreferrer"
         className="rounded-full bg-[#8A8F4A] px-5 py-2 font-semibold text-white transition hover:bg-[#72783c]"
