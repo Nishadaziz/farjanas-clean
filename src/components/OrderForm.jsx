@@ -1,44 +1,70 @@
 import React, { useState } from "react";
 
 function OrderForm() {
-  // 1. Initialize state for the form inputs
   const [formData, setFormData] = useState({
     name: "",
     tel: "",
     address: "",
   });
 
-  // Handle tracking changes for all inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
 
-  // 2. Handle Form Submission & WhatsApp redirection
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Your actual business WhatsApp phone number (with country code, no "+" sign)
-    const whatsappNumber = "8801912783281"; 
+    // Google Apps Script URL
+    const GOOGLE_SCRIPT_URL =
+      "https://script.google.com/macros/s/AKfycbw7geTDPOKhMjD7Gb3u5dkSvRWYkTrHg6I79tUZ-7ln-GM6wCmki8bdAWNu9rsgiUZQ1w/exec";
 
-    // Constructing a clean, bold text message formatting for WhatsApp
-    const message = `*নতুন অর্ডার (Farjanas Attire)*\n\n` +
-                    `📝 *নাম:* ${formData.name}\n` +
-                    `📞 *ফোন নম্বর:* ${formData.tel}\n` +
-                    `📍 *সম্পূর্ণ ঠিকানা:* ${formData.address}\n\n` +
-                    `🛍️ *প্রোডাক্ট:* Handcrafted Silk Batik Saree`;
+    try {
+      // Save order to Google Sheet
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          tel: formData.tel,
+          address: formData.address,
+          product: "Handcrafted Silk Batik Saree",
+        }),
+      });
 
-    // Encode the message to safely append to a URL string
-    const encodedMessage = encodeURIComponent(message);
-    
-    // Construct the final click-to-chat API Link
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+      // WhatsApp Order
+      const whatsappNumber = "8801912783281";
 
-    // Open WhatsApp in a new tab/window automatically
-    window.open(whatsappUrl, "_blank");
+      const message =
+        `*নতুন অর্ডার (Farjanas Attire)*\n\n` +
+        `📝 *নাম:* ${formData.name}\n` +
+        `📞 *ফোন নম্বর:* ${formData.tel}\n` +
+        `📍 *সম্পূর্ণ ঠিকানা:* ${formData.address}\n\n` +
+        `🛍️ *প্রোডাক্ট:* Handcrafted Silk Batik Saree`;
+
+      const encodedMessage = encodeURIComponent(message);
+
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+      window.open(whatsappUrl, "_blank");
+
+      // Clear form
+      setFormData({
+        name: "",
+        tel: "",
+        address: "",
+      });
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -51,7 +77,7 @@ function OrderForm() {
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-5">
-        {/* Name Input */}
+        {/* Name */}
         <input
           type="text"
           name="name"
@@ -63,7 +89,7 @@ function OrderForm() {
           required
         />
 
-        {/* Phone Number Input */}
+        {/* Phone */}
         <input
           type="tel"
           name="tel"
@@ -75,7 +101,7 @@ function OrderForm() {
           required
         />
 
-        {/* Address Input */}
+        {/* Address */}
         <textarea
           name="address"
           value={formData.address}
@@ -86,7 +112,7 @@ function OrderForm() {
           required
         />
 
-        {/* Submit Button */}
+        {/* Submit */}
         <button
           type="submit"
           className="w-full rounded-2xl bg-gradient-to-r from-[#C218D9] to-[#F15A24] py-4 font-bold text-white shadow-lg hover:scale-105 transition-transform cursor-pointer"
