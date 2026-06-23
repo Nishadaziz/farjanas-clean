@@ -1,95 +1,122 @@
-import { Mail, Phone, MapPin, ExternalLink, Camera } from "lucide-react";
+import React from "react";
+import { Mail, Phone, MapPin, Instagram, Facebook } from "lucide-react";
 
 function Footer() {
+  const googleMapsUrl = "https://maps.app.goo.gl/uXpXg6vE8VWhvC2C7";
+
   return (
-    <footer className="mt-16 bg-[#2B1430] text-white">
-      <div className="mx-auto max-w-7xl px-6 py-14 md:px-16">
-        <div className="grid gap-10 md:grid-cols-4">
-          <div>
-            <h3 className="text-2xl font-bold tracking-wide">
-              Farjanas Attire
-            </h3>
+    <footer
+      className="bg-gray-950 pt-16 pb-8 text-gray-400"
+      style={{ fontFamily: "'Inter', sans-serif" }}
+    >
+      <div className="mx-auto max-w-7xl grid grid-cols-1 gap-12 border-b border-gray-800 px-6 pb-12 md:grid-cols-3 md:px-12">
+        
+        {/* Brand */}
+        <div className="space-y-4">
+          <h3
+            className="text-xl font-black tracking-widest text-white"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
+          >
+            FARJANAS
+          </h3>
 
-            <p className="mt-4 text-sm leading-7 text-gray-300">
-              Premium handcrafted sarees and women&apos;s fashion collections
-              designed with elegance, comfort, and timeless beauty.
-            </p>
-          </div>
+          <p className="max-w-xs text-sm leading-relaxed text-gray-400">
+            Bringing you the finest handcrafted traditional batik silk clothing
+            lines straight from master local artisans.
+          </p>
+        </div>
 
-          <div>
-            <h4 className="mb-5 text-lg font-semibold">Contact</h4>
+        {/* Contact */}
+        <div className="space-y-3">
+          <h4 className="text-sm font-bold uppercase tracking-wider text-white">
+            Contact & Support
+          </h4>
 
-            <ul className="space-y-3 text-gray-300">
-              <li className="flex items-center gap-2">
-                <Phone size={16} />
-                <a href="tel:+8801793650138" className="hover:text-white">
-                  +880 1793-650138
-                </a>
-              </li>
+          <ul className="space-y-3 text-sm text-gray-400">
+            <li>
+              <a
+                href="tel:+8801912783281"
+                className="flex items-center gap-2.5 transition hover:text-white"
+              >
+                <Phone className="h-4 w-4 text-[#6D28D9]" />
+                <span>+880 1912-783281</span>
+              </a>
+            </li>
 
-              <li className="flex items-center gap-2">
-                <Mail size={16} />
-                <a
-                  href="mailto:farjanasattire@gmail.com"
-                  className="hover:text-white"
+            <li>
+              <a
+                href="mailto:farjanasattire@gmail.com"
+                className="flex items-center gap-2.5 transition hover:text-white"
+              >
+                <Mail className="h-4 w-4 text-[#6D28D9]" />
+                <span>farjanasattire@gmail.com</span>
+              </a>
+            </li>
+
+            <li>
+              <a
+                href={googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2.5 transition hover:text-white"
+              >
+                <MapPin className="h-4 w-4 shrink-0 text-[#6D28D9] transition-transform group-hover:scale-110" />
+
+                <span className="underline decoration-gray-700 underline-offset-4 group-hover:decoration-white">
+                  Dhaka, Bangladesh
+                </span>
+
+                <svg
+                  className="h-3 w-3 text-gray-500 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
                 >
-                  farjanasattire@gmail.com
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="mb-5 text-lg font-semibold">Showroom Address</h4>
-
-            <div className="space-y-1 text-gray-300">
-              <p className="flex items-center gap-2">
-                <MapPin size={16} />
-                Shop No: 1027
-              </p>
-              <p>1st Floor</p>
-              <p>Shimanto Shambhar Shopping Complex</p>
-              <p>Peelkhana, Dhanmondi-2</p>
-              <p>Dhaka, Bangladesh</p>
-            </div>
-          </div>
-
-          <div>
-            <h4 className="mb-5 text-lg font-semibold">Follow Us</h4>
-
-            <div className="flex flex-col gap-3">
-              <a
-                href="https://www.facebook.com/Shokuntola.FARJANAs"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 text-gray-300 transition hover:text-white"
-              >
-                <ExternalLink size={18} />
-                Facebook
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
               </a>
-
-              <a
-                href="https://www.instagram.com/farjanasattire?igsh=MThpM3U2Mjh1enRvYw%3D%3D&utm_source=qr"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 text-gray-300 transition hover:text-white"
-              >
-                <Camera size={18} />
-                Instagram
-              </a>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
 
-        <div className="mt-10 border-t border-white/10 pt-6">
-          <div className="flex flex-col items-center justify-between gap-3 md:flex-row">
-            <p className="text-sm text-gray-400">
-              © {new Date().getFullYear()} Farjanas Attire. All Rights Reserved.
-            </p>
+        {/* Social */}
+        <div className="space-y-4">
+          <h4 className="text-sm font-bold uppercase tracking-wider text-white">
+            Follow Our Journey
+          </h4>
 
-            <p className="text-sm text-gray-400">Crafted in Bangladesh</p>
+          <div className="flex gap-4">
+            <a
+              href="https://www.facebook.com/Shokuntola.FARJANAs?share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F18ryzS33D4%2F#"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-900 text-gray-400 transition hover:bg-[#6D28D9] hover:text-white"
+            >
+              <Facebook className="h-5 w-5" />
+            </a>
+
+            <a
+              href="https://www.instagram.com/farjanasattire?utm_source=qr"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-900 text-gray-400 transition hover:bg-[#6D28D9] hover:text-white"
+            >
+              <Instagram className="h-5 w-5" />
+            </a>
           </div>
         </div>
+      </div>
+
+      {/* Copyright */}
+      <div className="pt-8 text-center text-xs tracking-wide text-gray-600">
+        © {new Date().getFullYear()} Farjanas Attire. All Rights Reserved.
       </div>
     </footer>
   );

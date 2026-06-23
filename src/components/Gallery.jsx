@@ -1,11 +1,11 @@
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import saree1 from "../assets/saree1.jpeg";
-import saree2 from "../assets/saree2.jpeg";
-import saree3 from "../assets/saree3.jpeg";
-import saree4 from "../assets/saree4.jpeg";
-import saree5 from "../assets/saree5.jpeg";
+import saree1 from "../assets/saree1.webp";
+import saree2 from "../assets/saree2.webp";
+import saree3 from "../assets/saree3.webp";
+import saree4 from "../assets/saree4.webp";
+import saree5 from "../assets/saree5.webp";
 
 const images = [saree1, saree2, saree3, saree4, saree5];
 
@@ -28,7 +28,7 @@ function Gallery() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 text-center">
           <span className="rounded-full bg-[#fce7ff] px-5 py-2 text-sm font-bold uppercase tracking-wide text-[#C218D9]">
-            Farjanas Collection
+            Farjanas
           </span>
 
           <h2 className="mt-5 text-4xl font-extrabold text-gray-900 md:text-5xl">
@@ -60,6 +60,9 @@ function Gallery() {
                       <img
                         src={img}
                         alt={`Farjanas saree ${index + 1}`}
+                        loading="lazy"
+                        decoding="async"
+                        fetchPriority="low"
                         className="h-[480px] w-full object-cover transition duration-700 group-hover:scale-105 md:h-[560px]"
                       />
                     </div>
